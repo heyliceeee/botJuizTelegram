@@ -67,16 +67,21 @@ public class Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         Message msg = update.getMessage(); //mensagem
         User user = msg.getFrom(); //nome do utilizador
+        String msgFromUser = msg.getText(); //mensagem do utilizador
 
-        System.out.println(user.getId() + " enviou: " + msg.getText());
+        System.out.println(user.getId() + " enviou: " + msgFromUser);
 
         /**
          * responder ao utilizador
          */
-        String content = "Hi";
+        //enviar msg do utilizador para o chatgpt
+
+        String content = msg.getText();
 
         //enviar mensagem
         sendText(user.getId(), content);
+
+        System.out.println("o bot enviou ao: "+user.getId()+", "+content);
     }
 
     @Override
