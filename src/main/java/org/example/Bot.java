@@ -1,14 +1,41 @@
 package org.example;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.User;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
 
+    /**
+     * MY METHODS
+     */
+    /**
+     * Responder ao utilizador
+     * @param who quem (user)
+     * @param what o quê (mensagem a enviar)
+     */
+    public void sendText(Long who, String what){
+        SendMessage sendMSG = SendMessage.builder()
+                .chatId(who.toString()) //quem irá receber a mensagem
+                .text(what).build(); //mensagem a enviar
+
+        try {
+            execute(sendMSG);
+        } catch (TelegramApiException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+    /**
+     * DEFAULT METHODS
+     */
     /**
      * editar o nome do bot
      * @return nome do bot
@@ -41,7 +68,7 @@ public class Bot extends TelegramLongPollingBot {
         Message msg = update.getMessage(); //mensagem
         User user = msg.getFrom(); //nome do utilizador
 
-        System.out.println(user.getFirstName() + " enviou: " + msg.getText());
+        System.out.println(user.getId() + " enviou: " + msg.getText());
     }
 
     @Override
