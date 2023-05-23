@@ -6,15 +6,6 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import java.util.List;
 
 public class Bot extends TelegramLongPollingBot {
-    /**
-     * verificar se há um novo update disponivel
-     * @param update Update received
-     */
-    @Override
-    public void onUpdateReceived(Update update)
-    {
-        System.out.println(update);
-    }
 
     /**
      * editar o nome do bot
@@ -27,10 +18,29 @@ public class Bot extends TelegramLongPollingBot {
 
     /**
      * token
-     * @return
+     * @return token
      */
     @Override
-    public String getBotToken(){
+    public String getBotToken() {
         return "6040993503:AAHzXNo9rlgB4pOZvkQS8gS1vhayWuLdDCc";
+    }
+
+    @Override
+    public void onRegister() {
+        super.onRegister();
+    }
+
+    /**
+     * verificar se há uma nova nensagem privada disponivel
+     * @param update Update received
+     */
+    @Override
+    public void onUpdateReceived(Update update) {
+        System.out.println(update);
+    }
+
+    @Override
+    public void onUpdatesReceived(List<Update> updates) {
+        super.onUpdatesReceived(updates);
     }
 }
