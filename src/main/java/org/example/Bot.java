@@ -69,6 +69,14 @@ public class Bot extends TelegramLongPollingBot {
         User user = msg.getFrom(); //nome do utilizador
 
         System.out.println(user.getId() + " enviou: " + msg.getText());
+
+        /**
+         * responder ao utilizador
+         */
+        String content = "Hi";
+
+        //enviar mensagem
+        sendText(user.getId(), content);
     }
 
     @Override
