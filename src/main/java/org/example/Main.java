@@ -1,5 +1,6 @@
 package org.example;
 
+import com.theokanning.openai.OpenAiService;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;

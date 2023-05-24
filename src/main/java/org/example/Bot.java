@@ -1,5 +1,7 @@
 package org.example;
 
+import com.theokanning.openai.OpenAiService;
+import com.theokanning.openai.completion.CompletionRequest;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -31,7 +33,19 @@ public class Bot extends TelegramLongPollingBot {
         }
     }
 
+    public void goChatGPT()
+    {
+        String API_KEY = "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";
+        OpenAiService service = new OpenAiService(API_KEY);
 
+        CompletionRequest completionRequest = CompletionRequest.builder()
+                .prompt("Somebody once told me the world is gonna roll me")
+                .model("ada")
+                .echo(true)
+                .build();
+
+        service.createCompletion(completionRequest).getChoices().forEach(System.out::println);
+    }
 
     /**
      * DEFAULT METHODS
@@ -75,6 +89,7 @@ public class Bot extends TelegramLongPollingBot {
          * responder ao utilizador
          */
         //enviar msg do utilizador para o chatgpt
+        goChatGPT();
 
         String content = msg.getText();
 
